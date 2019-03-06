@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <title>whatsmyip.dev</title>
+
+    <!-- General -->
+    <meta charset="utf-8">
+    <meta name="application-name" content="whatsmyip.dev">
+    <meta name="description" content="Determine your public IP Address. What IP Address do services you connect to see when you use them?">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui">
+
+    <!-- Styling meta -->
+    <meta name="msapplication-TileColor" content="#9b4dca">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="whatsmyip.dev">
+    <meta name="theme-color" content="#9b4dca">
+
+    <!-- Twitter -->
+    <meta name="twitter:title" content="whatsmyip.dev">
+    <meta name="twitter:creator" content="@evanshortiss" />
+    <meta name="twitter:description" content="Determine your public IP Address. What IP Address do services you connect to see when you use them?">
+
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://whatsmyip.dev/">
+    <meta property="og:site_name" content="whatsmyip.dev">
+    <meta property="og:title" content="whatsmyip.dev">
+    <meta property="og:description" content="Determine your public IP Address. What IP Address do services you connect to see when you use them?">
+
+    <link rel="canonical" href="https://whatsmyip.dev/">
+    <link rel="shortlink" href="https://whatsmyip.dev/">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
+    <style>
+      .center {
+        text-align: center;
+      }
+
+      p {
+        font-size: 12.5pt
+      }
+
+      ul {
+        margin-left: 1rem;
+        list-style-position: outside;
+      }
+
+      ul li {
+        list-style: none;
+        padding-left: 1.6em;
+        text-indent: -1.6em;
+      }
+
+      ul li:nth-child(1):before {
+        content: "‍🤷";
+      }
+
+      ul li:nth-child(2):before {
+        content: "📖";
+      }
+
+      ul li:nth-child(3):before {
+        content: "👷";
+      }
+
+      ul li:nth-child(4):before {
+        content: "👩‍🎤";
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <br/>
+      <br/>
+
+      <div class="center">
+        <h3>Your IP Address is <span id="ip-result">...</span></h3>
+      </div>
+
+      <div>
+        <hr/>
+        <h3>HTTP API</h3>
+        <p>You can retrieve your public IP using the HTTP API exposed by this service like so:</p>
+
+        <div>
+          <pre><code id="curl-command">curl https://whatsmyip.dev/api/ip</code></pre>
+        </div>
+
+
+        <p>The response format is a JSON Object containing your IP Address, User Agent, and a milliseconds since epoch timestamp:</p>
+
+        <pre><code>
+{
+  "addr": "1.2.3.4",
+  "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
+  "ts": 1551659039521
+}
+        </code></pre>
+      </div>
+
+      <p>This API and website is a casual side-project, so don't expect five nines of reliability! Uptime will be tied to Zeit's Now <a href="https://zeit-status.co/">platform status</a>.</p>
+
+      <div>
+        <hr/>
+        <h3>About</h3>
+        <ul>
+          <li>&nbsp;Yet another whatsmyip style website.</li>
+          <li>&nbsp;It's open source on <a href="https://github.com/evanshortiss/whatsmyip.dev">GitHub</a>.</li>
+          <li>&nbsp;Hosted on the <a href="https://zeit.co/now">Zeit Now</a> serverless platform.</li>
+          <li>&nbsp;Styled using the <a href="https://milligram.io/">Milligram</a> CSS framework.</li>
+        </ul>
+      </div>
+
+      <div>
+        <hr/>
+        <h3>Results History</h3>
+        <p>These results are stored in your browser's cache - not on a server. This service doesn't store or collect any information 🕵️🕵‍♀️</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>IP</th>
+            </tr>
+          </thead>
+          <tbody id="results-table"></tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <hr/>
+    <footer class="center" style="margin: 2rem;">
+      Created by <a href="https://github.com/evanshortiss">Evan Shortiss</a>
+    </footer>
+
+    <script src="https://unpkg.com/unfetch/polyfill"></script>
+    <script src="static/main.min.js"></script>
+  </body>
+
+</html>
