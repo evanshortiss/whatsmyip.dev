@@ -1,12 +1,13 @@
-var LS_KEY = 'ip-history';
+var LS_KEY = 'ip-history'
+var MAX_STORE_SIZE = 100
 
 setTimeout(function () {
   renderIpHistory()
   doFetch()
 })
 
-function doFetch() {
-  fetch('/api/ip')
+function doFetch () {
+  window.fetch('/api/ip')
     .then(function (res) {
       if (res.status === 200) {
         return res.json()
@@ -28,12 +29,18 @@ function doFetch() {
 }
 
 function getResultsHistory () {
-  var history = localStorage.getItem(LS_KEY)
+  var history = window.store.get(LS_KEY)
 
   if (!history) {
     return []
   } else {
-    return JSON.parse(history)
+    if (history.length > MAX_STORE_SIZE) {
+      // Remove an item if we store over 100 entries
+      history.shift()
+      window.store.set(LS_KEY, history)
+    }
+
+    return history
   }
 }
 
@@ -42,7 +49,7 @@ function addResultToHistory (result) {
 
   history.push(result)
 
-  localStorage.setItem(LS_KEY, JSON.stringify(history))
+  window.store.set(LS_KEY, history)
 }
 
 function renderIpHistory () {
@@ -68,17 +75,9 @@ function renderIpHistory () {
 }
 
 function renderResult (result) {
-  var el = document.getElementById('ip-result')
-  el.innerHTML = result.addr
-}
+  var ipEl = document.getElementById('ip-result')
+  var jsonEl = document.getElementById('json-response')
 
-function getLocation (callback) {
-  navigator.geolocation.getCurrentPosition(
-    function (position) {
-      callback(position)
-    },
-    function () {
-      callback('Unknown')
-    }
-  )
+  ipEl.innerHTML = result.addr
+  jsonEl.innerHTML = JSON.stringify(result, null, 2)
 }

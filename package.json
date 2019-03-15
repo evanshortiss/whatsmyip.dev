@@ -8,7 +8,8 @@
     "min:js": "uglifyjs public/static/main.js -c -m -o public/static/main.min.js",
     "min:html": "html-minifier --collapse-whitespace --minify-css --remove-comments --remove-style-link-type-attributes --remove-script-type-attributes -o public/index.html public/index.dev.html",
     "min:all": "npm run min:html && npm run min:js",
-    "deploy": "npm run min:all && now",
+    "deploy": "npm run format && npm run min:all && now",
+    "format": "standard public/static/main.js --fix",
     "local": "npm run min:all && http-server public",
     "now:get-previous-urls": "now ls whatsmyip | grep whatsmyip | awk '{print $2}' | tail -n +2",
     "now:get-current-url": "now ls whatsmyip | grep whatsmyip | awk '{print $2}' | head -n 1",
@@ -22,6 +23,7 @@
   "devDependencies": {
     "html-minifier": "~3.5.21",
     "http-server": "~0.11.1",
+    "standard": "~12.0.1",
     "uglify-js": "~3.4.9"
   }
 }

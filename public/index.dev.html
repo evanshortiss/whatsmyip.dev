@@ -2,6 +2,13 @@
 <html lang="en">
 
   <head>
+    <script>
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', 'UA-75946220-4', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+
     <title>whatsmyip.dev</title>
 
     <!-- General -->
@@ -79,7 +86,7 @@
       <br/>
 
       <div class="center">
-        <h3>Your IP Address is <span id="ip-result">...</span></h3>
+        <h2>Your IP Address is <span id="ip-result">...</span></h2>
       </div>
 
       <div>
@@ -94,7 +101,7 @@
 
         <p>The response format is a JSON Object containing your IP Address, User Agent, and a milliseconds since epoch timestamp:</p>
 
-        <pre><code>
+        <pre><code id="json-response">
 {
   "addr": "1.2.3.4",
   "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.109 Safari/537.36"
@@ -139,6 +146,7 @@
     </footer>
 
     <script src="https://unpkg.com/unfetch/polyfill"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/store.js/1.3.20/store.min.js"></script>
     <script src="static/main.min.js"></script>
   </body>
 

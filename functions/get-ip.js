@@ -6,6 +6,8 @@ module.exports = (req, res) => {
     ts: Date.now()
   }
 
+  console.log('request headers : %j', req.headers)
+
   console.log('request details were - %j', ipinfo)
 
   res.setHeader('Content-Type', 'application/json')
