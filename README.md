@@ -10,4 +10,4 @@ Another whatsmyip style website. Check it out at [whatsmyip.dev](https://whatsmy
 
 ## How does it look on Mobile?
 
-![](https://github.com/evanshortiss/whatsmyip.dev/raw/master/screenshots/android-and-ios.png)
+![](https://raw.githubusercontent.com/evanshortiss/whatsmyip.dev/master/screenshots/android-and-ios.png)
